@@ -1,0 +1,3 @@
+[submodule "lib/ddui"]
+	path = lib/ddui
+	url = https://github.com/bartjoyce/ddui
