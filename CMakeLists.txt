@@ -9,6 +9,11 @@ add_subdirectory(lib/libsoundio)
 
 list(APPEND ASSETS
     ${ddui_ASSETS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/808_kick.wav
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/808_snare.wav
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/808_clap.wav
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/808_closed_hihat.wav
+    ${CMAKE_CURRENT_SOURCE_DIR}/assets/808_open_hihat.wav
     ${CMAKE_CURRENT_SOURCE_DIR}/assets/SFRegular.ttf
     ${CMAKE_CURRENT_SOURCE_DIR}/assets/SFRegularItalic.ttf
     ${CMAKE_CURRENT_SOURCE_DIR}/assets/SFBold.ttf
