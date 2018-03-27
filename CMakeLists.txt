@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
-project(start-app CXX)
+project(audio-test CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 
 add_subdirectory(src)
 add_subdirectory(lib/ddui)
+add_subdirectory(lib/libsoundio)
 
 list(APPEND ASSETS
     ${ddui_ASSETS}
@@ -16,7 +17,9 @@ list(APPEND ASSETS
     ${CMAKE_CURRENT_SOURCE_DIR}/assets/SFMediumItalic.ttf
 )
 
-add_executable(start-app MACOSX_BUNDLE WIN32 ${SOURCES} ${ASSETS})
+add_executable(audio-test MACOSX_BUNDLE WIN32 ${SOURCES} ${ASSETS})
+
+include_directories(lib/libsoundio)
 
 if(APPLE)
 
@@ -25,7 +28,7 @@ if(APPLE)
         MACOSX_PACKAGE_LOCATION "Resources"
     )
     
-    set_target_properties(start-app PROPERTIES
+    set_target_properties(audio-test PROPERTIES
         MACOSX_BUNDLE_ICON_FILE icon.icns
         MACOSX_BUNDLE_INFO_PLIST ${ddui_MACOSX_BUNDLE}
         RESOURCE ${ICON}
@@ -36,7 +39,7 @@ if(APPLE)
         PROPERTIES
         MACOSX_PACKAGE_LOCATION Resources/assets
     )
-    set(MACOSX_BUNDLE_BUNDLE_NAME "Start App")
+    set(MACOSX_BUNDLE_BUNDLE_NAME "Audio Test")
         
 else()
 
@@ -44,4 +47,10 @@ else()
 
 endif()
 
-target_link_libraries(start-app ddui)
+get_directory_property(LIBSOUNDIO_LIBS DIRECTORY lib/libsoundio DEFINITION LIBSOUNDIO_LIBS)
+
+target_link_libraries(audio-test
+    ddui
+    libsoundio_static
+    ${LIBSOUNDIO_LIBS}
+)
